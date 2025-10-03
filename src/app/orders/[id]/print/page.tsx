@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getSessionUser } from '@/core/auth';
 import { PrintAuto } from '@/features/components';
 import { getOrderForUser } from '@/features/data';
-import { hasStripe, stripe } from '@/core/clients';
+import { hasStripe, stripe } from '@/core/clients/stripe/server';
 
 function fmtDate(d: Date) {
   return new Date(d).toLocaleString('pt-BR');
@@ -44,7 +44,7 @@ export default async function PrintOrderPage({
   let cardInfo: { brand?: string; last4?: string } | null = null;
   if (hasStripe() && order.stripeSessionId) {
     try {
-      const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId, {
+      const session = await stripe!.checkout.sessions.retrieve(order.stripeSessionId, {
         expand: ['payment_intent.payment_method'],
       });
       const pm: any = (session.payment_intent as any)?.payment_method;

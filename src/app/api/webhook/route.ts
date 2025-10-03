@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import type Stripe from 'stripe';
-import { stripe } from '@/core/clients/stripe/stripe';
 import { prisma } from '@/core/clients/prisma/prisma';
 import { OrderStatus } from '@/generated/prisma';
 import { env } from '@/core/env';
+import { stripe } from '@/core/clients/stripe/server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, sig, secret);
+    event = stripe!.webhooks.constructEvent(body, sig, secret);
   } catch (err: any) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }

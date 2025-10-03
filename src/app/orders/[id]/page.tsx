@@ -3,10 +3,10 @@ import { formatBRL } from '@/core/utils';
 import { notFound } from 'next/navigation';
 import { getSessionUser } from '@/core/auth';
 import { getOrderForUser } from '@/features/data';
-import { hasStripe, stripe } from '@/core/clients';
 import { BackLink, OrderSummary, PrintReceiptButton } from '@/features/components';
 import { continueCheckoutAction } from '@/app/checkout/[orderId]/actions/actions';
 import React from 'react';
+import { hasStripe, stripe } from '@/core/clients/stripe/server';
 
 function fmtDate(d: Date) {
   return new Date(d).toLocaleString('pt-BR');
@@ -69,7 +69,7 @@ export default async function OrderDetailPage({
 
   if (hasStripe() && order.stripeSessionId) {
     try {
-      const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId, {
+      const session = await stripe!.checkout.sessions.retrieve(order.stripeSessionId, {
         expand: ['payment_intent.payment_method', 'payment_intent.latest_charge'],
       });
       const pm: any = (session.payment_intent as any)?.payment_method;

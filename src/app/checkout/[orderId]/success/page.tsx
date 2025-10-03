@@ -2,8 +2,9 @@ import React from 'react';
 
 import { redirect } from 'next/navigation';
 import { OrderStatus } from '@/generated/prisma';
-import { prisma, stripe } from '@/core/clients';
 import Link from 'next/link';
+import { stripe } from '@/core/clients/stripe/server';
+import { prisma } from '@/core/clients/prisma/prisma';
 
 type Props = {
   params: Promise<{ orderId: string }>;
@@ -16,7 +17,7 @@ export default async function CheckoutSuccessPage({ params, searchParams }: Prop
   const sessionId = Array.isArray(sp.session_id) ? sp.session_id[0] : sp.session_id ?? null;
 
   if (sessionId) {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const session = await stripe!.checkout.sessions.retrieve(sessionId);
     if (session.payment_status === 'paid') {
       await prisma.order.updateMany({
         where: { id: orderId, status: { not: OrderStatus.PAID } },

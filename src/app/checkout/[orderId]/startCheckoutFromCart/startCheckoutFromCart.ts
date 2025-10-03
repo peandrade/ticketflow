@@ -3,10 +3,11 @@
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { getSessionUser } from '@/core/auth';
-import { prisma, stripe } from '@/core/clients';
+import { prisma } from '@/core/clients';
 import { OrderStatus } from '@/generated/prisma';
 import type { Prisma } from '@/generated/prisma';
 import { headers as nextHeaders } from 'next/headers';
+import { stripe } from '@/core/clients/stripe/server';
 
 export type CheckoutState =
   | { ok: true }
@@ -117,7 +118,7 @@ export const startCheckoutFromCart: CheckoutAction = async (_prev, formData) => 
     },
   }));
 
-  const session = await stripe.checkout.sessions.create(
+  const session = await stripe!.checkout.sessions.create(
     {
       mode: 'payment',
       customer_email: user.email,

@@ -4,7 +4,8 @@ import type Stripe from 'stripe';
 import { revalidatePath } from 'next/cache';
 import { getSessionUser } from '@/core/auth';
 import { refundOrderRules } from '@/usecases';
-import { hasStripe, prisma, stripe } from '@/core/clients';
+import { prisma } from '@/core/clients';
+import { hasStripe, stripe } from '@/core/clients/stripe/server';
 
 type State = { ok?: true; error?: string };
 
@@ -35,7 +36,7 @@ export async function requestRefundAction(_prev: State, formData: FormData): Pro
 
   try {
     if (hasStripe() && order.stripeSessionId) {
-      const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId, {
+      const session = await stripe!.checkout.sessions.retrieve(order.stripeSessionId, {
         expand: ['payment_intent.latest_charge'],
       });
 
@@ -58,7 +59,7 @@ export async function requestRefundAction(_prev: State, formData: FormData): Pro
           const fallbackAmount = session.amount_total ?? order.totalCents;
           const amountToRefund = Math.min(order.totalCents, amountReceived ?? fallbackAmount);
 
-          await stripe.refunds.create({
+          await stripe!.refunds.create({
             payment_intent: pi.id,
             amount: amountToRefund,
             reason: 'requested_by_customer',

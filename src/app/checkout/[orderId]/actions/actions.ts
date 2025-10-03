@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getSessionUser } from '@/core/auth';
-import { stripe } from '@/core/clients/stripe/stripe';
+import { stripe } from '@/core/clients/stripe/server';
 import { prisma } from '@/core/clients/prisma/prisma';
 
 async function getBaseUrl() {
@@ -33,7 +33,7 @@ export async function continueCheckoutAction(formData: FormData) {
   }
 
   if (order.stripeSessionId) {
-    const s = await stripe.checkout.sessions.retrieve(order.stripeSessionId).catch(() => null);
+    const s = await stripe!.checkout.sessions.retrieve(order.stripeSessionId).catch(() => null);
 
     if (s?.payment_status === 'paid') {
       await prisma.order.update({ where: { id: orderId }, data: { status: 'PAID' } });
@@ -55,7 +55,7 @@ export async function continueCheckoutAction(formData: FormData) {
     },
   }));
 
-  const session = await stripe.checkout.sessions.create(
+  const session = await stripe!.checkout.sessions.create(
     {
       mode: 'payment',
       customer_email: user.email,
@@ -99,7 +99,7 @@ export async function startCheckoutAction(formData: FormData) {
   }
 
   if (order.stripeSessionId) {
-    const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId);
+    const session = await stripe!.checkout.sessions.retrieve(order.stripeSessionId);
     if (session?.url) redirect(session.url);
   }
 
@@ -117,7 +117,7 @@ export async function startCheckoutAction(formData: FormData) {
 
   if (line_items.length === 0) throw new Error('Pedido vazio');
 
-  const session = await stripe.checkout.sessions.create(
+  const session = await stripe!.checkout.sessions.create(
     {
       mode: 'payment',
       customer_email: user.email,
