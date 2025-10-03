@@ -150,7 +150,7 @@ describe('checkout/[orderId]/actions.startCheckoutAction – extras', () => {
   it('usa NEXT_PUBLIC_APP_URL quando não há origin (cobre 2º termo do coalesce)', async () => {
     withOrderItems();
     (headers as any).mockResolvedValue({ get: () => null });
-    process.env.NEXT_PUBLIC_APP_URL = 'https://env.example';
+    process.env['NEXT_PUBLIC_APP_URL'] = 'https://env.example';
 
     stripeMock.checkout.sessions.create.mockResolvedValue({
       id: 'cs_env',
@@ -169,7 +169,7 @@ describe('checkout/[orderId]/actions.startCheckoutAction – extras', () => {
   it('usa http://localhost:3000 quando não há origin nem ENV (cobre 3º termo do coalesce)', async () => {
     withOrderItems();
     (headers as any).mockResolvedValue({ get: () => null });
-    delete process.env.NEXT_PUBLIC_APP_URL;
+    delete process.env['NEXT_PUBLIC_APP_URL'];
 
     stripeMock.checkout.sessions.create.mockResolvedValue({
       id: 'cs_def',

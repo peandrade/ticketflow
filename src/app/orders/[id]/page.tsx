@@ -30,8 +30,10 @@ export default async function OrderDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams?: { canceled?: string };
+  searchParams?: Promise<{ canceled?: string }>;
 }) {
+  const sp = (await searchParams) ?? {};
+  const canceled = sp.canceled === "1" || sp.canceled === "true";
   const { id } = await params;
 
   const user = await getSessionUser();
@@ -49,8 +51,6 @@ export default async function OrderDetailPage({
     const name = [sector, kind, seatType].filter(Boolean).join(' - ');
     return { id: oi.id, name, quantity: oi.quantity, unitPriceCents: unitNoFee };
   });
-
-  const canceled = searchParams?.canceled === '1' || searchParams?.canceled === 'true';
 
   const perf = order.orderItems[0]?.ticketType?.performance ?? null;
 
@@ -180,11 +180,11 @@ export default async function OrderDetailPage({
             totalCents={order.totalCents}
             status={order.status}
             createdAt={order.createdAt}
-            eventTitle={artistName}
-            eventCity={perf?.venue?.city}
-            eventStartsAt={perf?.startsAt}
-            paymentBrand={cardInfo?.brand}
-            paymentLast4={cardInfo?.last4}
+            eventTitle={artistName ?? ''}
+            eventCity={perf?.venue?.city ?? ''}
+            eventStartsAt={perf?.startsAt ?? new Date(0)}
+            paymentBrand={cardInfo?.brand ?? ''}
+            paymentLast4={cardInfo?.last4 ?? ''}
           />
 
           {order.status !== 'PAID' && order.status !== 'REFUNDED' && (

@@ -32,7 +32,8 @@ describe('data/venues#getFeaturedVenues', () => {
     expect(m.groupBy).toHaveBeenCalledTimes(1);
     expect(m.findMany).toHaveBeenCalledTimes(1);
 
-    const args = m.findMany.mock.calls[0][0];
+    expect(m.findMany.mock.calls.length).toBeGreaterThan(0);
+    const args = m.findMany.mock.calls[0]![0]!;
     expect(args).toEqual(
       expect.objectContaining({
         where: expect.objectContaining({

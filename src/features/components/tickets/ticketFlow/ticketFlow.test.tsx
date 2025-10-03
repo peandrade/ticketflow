@@ -42,7 +42,9 @@ describe('TicketFlow (integração leve)', () => {
     );
 
     await user.click(screen.getByRole('button', { name: /setor a/i }));
-    await user.click(screen.getAllByRole('button', { name: /aumentar/i })[0]);
+    const incButtons = screen.getAllByRole('button', { name: /aumentar/i });
+    expect(incButtons.length).toBeGreaterThan(0); // garante que existe
+    await user.click(incButtons[0]!);
 
     const items = getItemsFromDom(container);
     expect(items).toHaveLength(1);

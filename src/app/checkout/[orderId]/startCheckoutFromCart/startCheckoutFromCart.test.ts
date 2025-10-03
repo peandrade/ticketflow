@@ -154,7 +154,8 @@ describe('startCheckoutFromCart', () => {
     expect(res).toEqual({ ok: true });
 
     expect(prismaMock.order.create).toHaveBeenCalled();
-    const createArg = prismaMock.order.create.mock.calls[0][0];
+    expect(prismaMock.order.create.mock.calls.length).toBeGreaterThan(0);
+    const createArg = prismaMock.order.create.mock.calls[0]![0]!;
     const createdItem = createArg.data.orderItems.create[0];
 
     expect(createdItem.unit_price_cents).toBe(700);
@@ -257,7 +258,8 @@ describe('startCheckoutFromCart – cobre unitNoFee ?? 0', () => {
     await startCheckoutFromCart({ ok: true }, form);
 
     expect(prismaMock.order.create).toHaveBeenCalled();
-    const createArg = prismaMock.order.create.mock.calls[0][0];
+    expect(prismaMock.order.create.mock.calls.length).toBeGreaterThan(0);
+    const createArg = prismaMock.order.create.mock.calls[0]![0]!;
     const createdItem = createArg.data.orderItems.create[0];
     expect(createdItem.unit_price_cents).toBe(0);
     expect(createdItem.unitPriceCents).toBe(0);

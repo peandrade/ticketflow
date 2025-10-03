@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { setCookie, deleteCookie } from 'cookies-next/client'
+import { create } from "zustand";
 
 type Store = {
     token: string | null;

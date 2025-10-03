@@ -6,7 +6,7 @@ import { startCheckoutFromCart } from '@/app/checkout';
 import { getEventWithPerformances, pickPerformance } from '@/features/data';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: Promise<{ perf?: string }>;
 };
 

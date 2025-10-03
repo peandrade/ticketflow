@@ -112,8 +112,10 @@ describe('OrdersGrid', () => {
     render(<OrdersGrid items={items} />);
 
     const cards = screen.getAllByRole('link');
-    expect(within(cards[0]).getByText('Estádio 1')).toBeInTheDocument();
-    expect(within(cards[1]).queryByText(/Estádio 1/)).toBeNull();
+    expect(cards.length).toBeGreaterThan(0);
+    expect(within(cards[0]!).getByText('Estádio 1')).toBeInTheDocument();
+    expect(cards.length).toBeGreaterThan(1);
+    expect(within(cards[1]!).queryByText(/Estádio 1/)).toBeNull();
   });
 
   it('mostra prefixo do id (#slice 0..8) e a data formatada (contendo o ano local)', () => {

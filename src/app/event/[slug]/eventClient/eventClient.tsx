@@ -47,7 +47,7 @@ export default function EventClient({
         eventTitle={title}
         eventSlug={eventSlug}
         options={options}
-        value={selectedId}
+        value={selectedId ?? ''}
         onChange={setSelectedId}
       />
 

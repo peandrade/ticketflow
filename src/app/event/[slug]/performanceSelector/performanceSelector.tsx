@@ -29,7 +29,7 @@ export function PerformanceSelector({ eventTitle, eventSlug, options, value, onC
           <PerformanceSelect
             eventTitle={eventTitle}
             options={options}
-            value={value}
+            value={value ?? ''}
             onChange={onChange}
           />
         </div>

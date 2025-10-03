@@ -3,15 +3,17 @@ import React from 'react';
 import { redirect } from 'next/navigation';
 import { OrderStatus } from '@/generated/prisma';
 import { prisma, stripe } from '@/core/clients';
+import Link from 'next/link';
 
 type Props = {
-  params: { orderId: string };
-  searchParams: { session_id?: string };
+  params: Promise<{ orderId: string }>;
+  searchParams: Promise<{ session_id?: string | string[] }>;
 };
 
 export default async function CheckoutSuccessPage({ params, searchParams }: Props) {
-  const { orderId } = params;
-  const sessionId = searchParams.session_id;
+  const { orderId } = await params;
+  const sp = await searchParams;
+  const sessionId = Array.isArray(sp.session_id) ? sp.session_id[0] : sp.session_id ?? null;
 
   if (sessionId) {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -40,9 +42,9 @@ export default async function CheckoutSuccessPage({ params, searchParams }: Prop
       </p>
 
       <div className="flex gap-3">
-        <a className="rounded-md border px-4 py-2 hover:bg-gray-50" href="/orders">
+        <Link className="rounded-md border px-4 py-2 hover:bg-gray-50" href="/orders">
           Meus pedidos
-        </a>
+        </Link>
         {!paid && (
           <form action={`/checkout/${orderId}/success`} method="GET">
             <button className="rounded-md border px-4 py-2 hover:bg-gray-50" type="submit">

@@ -1,3 +1,4 @@
+import { setCookie, deleteCookie } from 'cookies-next/client';  
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('cookies-next/client', () => {
@@ -7,7 +8,6 @@ vi.mock('cookies-next/client', () => {
     };
 });
 
-import { setCookie, deleteCookie } from 'cookies-next/client';
 import { useAuth } from '@/stores/auth';
 
 describe('useAuth store', () => {

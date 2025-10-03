@@ -29,7 +29,7 @@ describe('PerformanceInfo', () => {
   });
 
   it('não renderiza nada quando option é indefinida', () => {
-    const { container } = render(<PerformanceInfo option={undefined} />);
+    const { container } = render(<PerformanceInfo />);
     expect(container).toBeEmptyDOMElement();
   });
 });

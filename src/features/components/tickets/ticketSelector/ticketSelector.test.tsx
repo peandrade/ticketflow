@@ -55,7 +55,8 @@ describe('TicketSelector', () => {
     expect(continuar).toBeDisabled();
 
     const inc = screen.getAllByRole('button', { name: /aumentar/i })[0];
-    await user.click(inc);
+    expect(inc).toBeTruthy();
+    await user.click(inc!);
   });
 
   it('remove item ao zerar quantidade (delete next[id]) e não inclui no payload/summary', async () => {
@@ -65,7 +66,8 @@ describe('TicketSelector', () => {
     render(<TicketSelector performanceId="p1" tickets={tickets as any} />);
 
     const inc = screen.getAllByRole('button', { name: /aumentar/i })[0];
-    await user.click(inc);
+    expect(inc).toBeTruthy();
+    await user.click(inc!);
 
     await screen.findByText(/1\s*×\s*R\$ 780\.00/i);
 
@@ -75,7 +77,8 @@ describe('TicketSelector', () => {
     );
 
     const dec = screen.getAllByRole('button', { name: /diminuir/i })[0];
-    await user.click(dec);
+    expect(dec).toBeTruthy();
+    await user.click(dec!);
 
     await waitFor(() =>
       expect(screen.queryByText(/1\s*×\s*R\$ 780\.00/i)).not.toBeInTheDocument(),
@@ -100,7 +103,8 @@ describe('TicketSelector', () => {
     render(<TicketSelector performanceId="p1" tickets={tickets as any} />);
 
     const inc = screen.getAllByRole('button', { name: /aumentar/i })[0];
-    await user.click(inc);
+    expect(inc).toBeTruthy();
+    await user.click(inc!);
 
     const form = document.querySelector('form') as HTMLFormElement;
     (form as any).requestSubmit = vi.fn();

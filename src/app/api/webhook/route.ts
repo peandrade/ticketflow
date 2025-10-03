@@ -4,13 +4,14 @@ import type Stripe from 'stripe';
 import { stripe } from '@/core/clients/stripe/stripe';
 import { prisma } from '@/core/clients/prisma/prisma';
 import { OrderStatus } from '@/generated/prisma';
+import { env } from '@/core/env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
   const sig = (await headers()).get('stripe-signature');
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+  const secret = env.STRIPE_WEBHOOK_SECRET ?? '';
   if (!sig || !secret) {
     return new NextResponse('Missing stripe signature or webhook secret', { status: 400 });
   }
@@ -27,7 +28,7 @@ export async function POST(req: Request) {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
-        const orderId = (session.metadata?.orderId as string) || null;
+        const orderId = (session.metadata?.['orderId'] as string) || null;
 
         if (orderId) {
           await prisma.order.updateMany({
@@ -45,7 +46,7 @@ export async function POST(req: Request) {
 
       case 'payment_intent.payment_failed': {
         const pi = event.data.object as Stripe.PaymentIntent;
-        const orderId = (pi.metadata?.orderId as string) || null;
+        const orderId = (pi.metadata?.['orderId'] as string) || null;
         if (orderId) {
           await prisma.order.updateMany({
             where: { id: orderId, status: { not: OrderStatus.PAID } },
@@ -57,7 +58,7 @@ export async function POST(req: Request) {
 
       case 'charge.refunded': {
         const charge = event.data.object as Stripe.Charge;
-        const orderId = (charge.metadata?.orderId as string) || null;
+        const orderId = (charge.metadata?.['orderId'] as string) || null;
         if (orderId) {
           await prisma.order.updateMany({
             where: { id: orderId },

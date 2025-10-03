@@ -137,8 +137,8 @@ const base: PerformanceOption[] = [
 describe('PerformanceSelect – extra coverage', () => {
   it('aceita startsAt como string (cobre new Date(d))', () => {
     const stringOptions: PerformanceOption[] = [
-      { ...base[0], id: 'ps1', startsAt: '2099-03-01T15:30:00Z' as any },
-      { ...base[1], id: 'ps2', startsAt: '2099-03-02T18:00:00Z' as any },
+      { ...base[0], id: 'ps1', startsAt: '2099-03-01T15:30:00Z' as any, venue: base[0]!.venue },
+      { ...base[1], id: 'ps2', startsAt: '2099-03-02T18:00:00Z' as any, venue: base[1]!.venue },
     ];
 
     render(<PerformanceSelect eventTitle="Show Z" options={stringOptions} onChange={() => {}} />);

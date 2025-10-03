@@ -33,7 +33,7 @@ import { createSession, getSessionUser, logout } from './session';
 describe('lib/auth/session', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    cookieStore.value = undefined;
+    cookieStore.value = '';
     prismaMock.session.delete.mockResolvedValue(undefined);
   });
 

@@ -61,7 +61,8 @@ describe('ValueSelector', () => {
     const incButtons = screen.getAllByRole('button', { name: /aumentar/i });
     expect(incButtons.length).toBeGreaterThanOrEqual(1);
 
-    await user.click(incButtons[0]);
+    expect(incButtons.length).toBeGreaterThan(0);
+    await user.click(incButtons[0]!);
 
     expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ vFULL: 1 }));
   });

@@ -36,13 +36,13 @@ describe('api/webhook/route POST', () => {
   });
 
   it('400 quando falta signature ou secret', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = '';
+    process.env['STRIPE_WEBHOOK_SECRET'] = '';
     const res = await POST(new Request('https://test/webhook', { method: 'POST', body: '{}' }));
     expect(res.status).toBe(400);
   });
 
   it('400 quando constructEvent lança erro de verificação', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockImplementation(() => {
       throw new Error('Bad signature');
     });
@@ -52,7 +52,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('checkout.session.completed → atualiza pedido para PAID', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'checkout.session.completed',
       data: { object: { id: 'cs_123', metadata: { orderId: 'o1' } } },
@@ -67,7 +67,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('checkout.session.completed (sem orderId) → usa session.id no where', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'checkout.session.completed',
       data: { object: { id: 'cs_fallback', metadata: {} } },
@@ -85,7 +85,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('payment_intent.payment_failed → marca como FAILED se não pago', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'payment_intent.payment_failed',
       data: { object: { id: 'pi_123', metadata: { orderId: 'o2' } } },
@@ -100,7 +100,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('payment_intent.payment_failed (sem orderId) → não toca no DB', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'payment_intent.payment_failed',
       data: { object: { id: 'pi_456', metadata: {} } },
@@ -112,7 +112,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('charge.refunded → marca como REFUNDED', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'charge.refunded',
       data: { object: { id: 'ch_123', metadata: { orderId: 'o3' } } },
@@ -127,7 +127,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('charge.refunded (sem orderId) → não toca no DB', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'charge.refunded',
       data: { object: { id: 'ch_456', metadata: {} } },
@@ -139,7 +139,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('evento não suportado (default): retorna 200 sem tocar no DB', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'invoice.paid',
       data: { object: { id: 'in_123' } },
@@ -151,7 +151,7 @@ describe('api/webhook/route POST', () => {
   });
 
   it('erro interno no handler → 500', async () => {
-    process.env.STRIPE_WEBHOOK_SECRET = 'whsec_test';
+    process.env['STRIPE_WEBHOOK_SECRET'] = 'whsec_test';
     stripeMock.webhooks.constructEvent.mockReturnValue({
       type: 'checkout.session.completed',
       data: { object: { id: 'cs_err', metadata: { orderId: 'oErr' } } },

@@ -139,7 +139,7 @@ export function TicketFlow({
         </div>
 
         <aside aria-label="Resumo da seleção">
-          <Summary items={cartItems} action={startCheckoutAction} />
+          <Summary items={cartItems} {...(startCheckoutAction ? { action: startCheckoutAction } : {})} />
         </aside>
       </div>
     </div>

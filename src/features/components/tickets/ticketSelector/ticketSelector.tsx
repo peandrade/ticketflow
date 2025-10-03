@@ -73,7 +73,7 @@ export default function TicketSelector({
                   <Quantity
                     value={qty}
                     onChange={(n) => setQty(t.id, n)}
-                    max={t.available ?? undefined}
+                    max={t.available ?? 0}
                   />
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function TicketSelector({
         <input type="hidden" name="items" value={JSON.stringify(payload)} />
         <Summary
           items={items.filter(i => i.qty > 0)}
-          error={state?.error}
+          error={state?.error ?? ''}
           onSubmit={() => (document.activeElement as HTMLElement)?.closest('form')?.requestSubmit()}
           disabled={pending}
         />

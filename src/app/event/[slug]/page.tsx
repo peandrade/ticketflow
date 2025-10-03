@@ -21,8 +21,8 @@ export default async function EventPage({ params }: PageProps) {
       id: p.id,
       startsAt: p.startsAt,
       venue: p.venue,
-      minPriceCents: prices.length ? Math.min(...prices) : undefined,
-      maxPriceCents: prices.length ? Math.max(...prices) : undefined,
+      minPriceCents: prices.length ? Math.min(...prices) : 0,
+      maxPriceCents: prices.length ? Math.max(...prices) : 0,
       availableTotal: available,
     };
   });

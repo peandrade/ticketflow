@@ -6,14 +6,16 @@ import { notFound } from 'next/navigation';
 import { getSessionUser } from '@/core/auth';
 import { continueCheckoutAction } from './actions';
 
-type Props = {
+type PageProps = {
   params: Promise<{ orderId: string }>;
-  searchParams?: { canceled?: string };
+  searchParams: Promise<{ canceled?: string }>;
 };
 
 export const dynamic = 'force-dynamic';
 
-export default async function OrderDetailPage({ params, searchParams }: Props) {
+export default async function Page({ params, searchParams }: PageProps) {
+  const sp = (await searchParams) ?? {};
+  const canceled = sp.canceled === "1" || sp.canceled === "true";
   const { orderId } = await params;
 
   const user = await getSessionUser();
@@ -42,8 +44,6 @@ export default async function OrderDetailPage({ params, searchParams }: Props) {
           : order.status === 'FAILED'
             ? 'Falhou'
             : order.status;
-
-  const canceled = searchParams?.canceled === '1' || searchParams?.canceled === 'true';
 
   return (
     <main className="mx-auto max-w-3xl p-6">

@@ -21,6 +21,7 @@ export default function SectorList({
       {types.map((t) => {
         const vs = t.variants.filter(v => v.active).sort((a,b)=>a.priceCents-b.priceCents);
         const min = vs[0];
+        if (!min) return null;
         const price = formatBRL(min.priceCents);
         const fee = formatBRL(min.feeCents);
         const active = selectedId === t.id;

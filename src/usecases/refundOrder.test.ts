@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import type { OrderStatus } from '@/generated/prisma';
+import { describe, it, expect } from 'vitest'; 
+import type { OrderStatus } from '@/generated/prisma'; 
 import { refundOrderRules, type RefundCheckInput } from './refundOrder';
 
 function makeInput(partial: Partial<RefundCheckInput> = {}): RefundCheckInput {

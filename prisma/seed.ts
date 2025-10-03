@@ -1,6 +1,9 @@
 import { toSlug } from "@/core/utils";
 import { PrismaClient } from "@/generated/prisma";
 
+const toNull = <T>(v: T | undefined): T | null => (v === undefined ? null : v);
+const opt = <K extends string, V>(k: K, v: V | undefined) => (v === undefined ? {} as Record<K, never> : { [k]: v } as Record<K, V>);
+
 const daysFromNow = (d: number) => {
   const dt = new Date();
   dt.setDate(dt.getDate() + d);
@@ -917,9 +920,9 @@ async function seedVenues() {
         name: v.name,
         city: v.city,
         state: v.state,
-        address: v.address,
-        capacity: v.capacity,
-        coverPublicId: (v as any).coverPublicId ?? null,
+        ...opt('address', v.address),
+        ...opt('capacity', v.capacity),
+        coverPublicId: toNull(v.coverPublicId),
         slug,
       },
     });
@@ -939,7 +942,7 @@ async function seedEventsGraph() {
         title: e.title,
         slug: e.slug,
         shortDescription: e.shortDescription,
-        heroPublicId: e.heroPublicId,
+        heroPublicId: toNull(e.heroPublicId),
       },
       select: { id: true },
     });

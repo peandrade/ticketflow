@@ -2,6 +2,7 @@ import { Button } from "../ui/button";
 import { getSessionUser } from "@/core/auth";
 import { AuthModal, UserMenu } from "../auth";
 import React from "react";
+import Link from "next/link";
 
 export async function Header() {
   const user = await getSessionUser();
@@ -9,7 +10,7 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-50 border-b bg-white">
       <div className="mx-4 flex h-16 items-center justify-between">
-        <a href="/" className="text-2xl font-bold italic">TicketFlow</a>
+        <Link href="/" className="text-2xl font-bold italic">TicketFlow</Link>
 
         {user ? (
           <UserMenu user={user} />

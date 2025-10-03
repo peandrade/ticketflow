@@ -34,7 +34,7 @@ function coalesce<T>(...vals: Array<T | null | undefined>): T | undefined {
 
 async function getBaseUrl() {
   const h = await nextHeaders();
-  return h.get('origin') ?? process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
+  return h.get('origin') ?? process.env['NEXT_PUBLIC_APP_URL'] ?? 'http://localhost:3000';
 }
 
 export const startCheckoutFromCart: CheckoutAction = async (_prev, formData) => {

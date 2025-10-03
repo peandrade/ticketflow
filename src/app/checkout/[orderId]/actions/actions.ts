@@ -10,7 +10,7 @@ async function getBaseUrl() {
   const h = headers();
   return (
     (await h).get('origin') ||
-    process.env.NEXT_PUBLIC_APP_URL ||
+    process.env['NEXT_PUBLIC_APP_URL'] ||
     'http://localhost:3000'
   );
 }

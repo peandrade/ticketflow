@@ -121,18 +121,13 @@ describe('PrintReceiptButton', () => {
 
   it('não renderiza bloco do evento sem title; e mostra só o title quando city ausente (fmtDate vazio p/ startsAt)', () => {
     cleanup();
-    let iframe = clickPrint({
-      ...baseProps,
-      eventTitle: undefined,
-      eventCity: 'Sampa',
-      eventStartsAt: undefined,
-    });
+    let iframe = clickPrint({ ...baseProps, eventTitle: '', eventCity: 'São Paulo', eventStartsAt: new Date(0) });
     let html = iframe.contentDocument!.documentElement!.innerHTML;
     expect(html).not.toContain(' - Sampa');
     expect(html).not.toMatch(/class="small muted">.*<\/div>\s*<\/header>/);
   
     cleanup();
-    iframe = clickPrint({ ...baseProps, eventTitle: 'Meu Show', eventCity: undefined });
+    iframe = clickPrint({ ...baseProps, eventTitle: 'Meu Show', eventCity: '' });
     html = iframe.contentDocument!.documentElement!.innerHTML;
     expect(html).toContain('Meu Show');
     expect(html).not.toContain('Meu Show -');
@@ -140,11 +135,7 @@ describe('PrintReceiptButton', () => {
   
   it('fallbacks: paymentBrand → "—" e cartão → "—" quando não informados', () => {
     cleanup();
-    const iframe = clickPrint({
-      ...baseProps,
-      paymentBrand: undefined,
-      paymentLast4: undefined,
-    });
+    const iframe = clickPrint({ ...baseProps, paymentBrand: '', paymentLast4: '' });
     const html = iframe.contentDocument!.documentElement!.innerHTML;
     expect(html).toContain('Meio de pagamento</div><div style="text-transform:uppercase">—</div>');
     expect(html).toContain('<div class="muted">Cartão</div><div>—</div>');
@@ -187,7 +178,7 @@ describe('PrintReceiptButton', () => {
       },
     });
   
-    const iframe = clickPrint({ ...baseProps, paymentBrand: undefined, paymentLast4: undefined });
+    const iframe = clickPrint({ ...baseProps, paymentBrand: '', paymentLast4: '' });
   
     expect(docStub.open).toHaveBeenCalled();
     expect(docStub.write).toHaveBeenCalled();
@@ -219,7 +210,6 @@ describe('PrintReceiptButton', () => {
     cw.print = printSpy;
   
     act(() => vi.advanceTimersByTime(65));
-    // fica ready
     fakeDoc.readyState = 'complete';
     act(() => vi.advanceTimersByTime(55));
     expect(printSpy).toHaveBeenCalledTimes(1);

@@ -63,7 +63,8 @@ describe('CityShelf (Home)', () => {
     const items = [{ ...makeItem('1'), heroPublicId: null }];
     render(<CityShelf city="Campinas" state="SP" items={items as any} />);
 
-    const img = screen.getByAltText(items[0].title) as HTMLImageElement;
+    expect(items.length).toBeGreaterThan(0);
+    const img = screen.getByAltText(items[0]!.title) as HTMLImageElement;
     expect(img.src).toBe('https://res.cloudinary.com/undefined/image/upload/ar_3:1,c_fill,g_auto,f_auto,q_auto,w_800/placeholder');
   });
 });

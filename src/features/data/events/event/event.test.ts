@@ -14,7 +14,8 @@ describe('data/event#getEventsForHome', () => {
     await getEventsForHome();
 
     expect(h.findMany).toHaveBeenCalledTimes(1);
-    const args = h.findMany.mock.calls[0][0];
+    expect(h.findMany.mock.calls.length).toBeGreaterThan(0);
+    const args = h.findMany.mock.calls[0]![0]!;
 
     expect(args).toEqual(
       expect.objectContaining({

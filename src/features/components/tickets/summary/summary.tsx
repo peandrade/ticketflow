@@ -108,7 +108,7 @@ export default function Summary({
       {action ? (
         <form action={formAction}>
           <input type="hidden" name="items" value={JSON.stringify(items)} />
-          <SubmitButton disabled={disabled} hasItems={qty > 0} />
+          <SubmitButton disabled={!!disabled} hasItems={qty > 0} />
         </form>
       ) : (
         <button
