@@ -1,0 +1,181 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Venue {
+  id            String        @id @default(cuid())
+  name          String
+  city          String
+  state         String        @db.VarChar(2)
+  address       String?
+  capacity      Int?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @default(now()) @updatedAt
+  coverPublicId String?
+  slug          String        @unique
+  Performance   Performance[]
+
+  @@unique([name, city, state], name: "name_city_state")
+}
+
+model Event {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  heroPublicId     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now()) @updatedAt
+
+  performances Performance[]
+}
+
+model Performance {
+  id        String    @id @default(cuid())
+  eventId   String
+  event     Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  startsAt  DateTime
+  endsAt    DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+
+  venueId String
+  venue   Venue  @relation(fields: [venueId], references: [id], onDelete: Cascade)
+
+  ticketTypes TicketType[]
+
+  @@index([eventId, startsAt, venueId])
+}
+
+model TicketType {
+  id              String      @id @default(cuid())
+  performanceId   String
+  performance     Performance @relation(fields: [performanceId], references: [id], onDelete: Cascade)
+  name            String
+  priceCents      Int
+  initialQuantity Int
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now()) @updatedAt
+
+  inventory  Inventory?
+  orderItems OrderItem[]
+  variants   TicketVariant[]
+
+  @@unique([performanceId, name])
+  @@index([performanceId])
+}
+
+model Inventory {
+  id           String     @id @default(cuid())
+  ticketTypeId String     @unique
+  ticketType   TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
+  available    Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @default(now()) @updatedAt
+}
+
+model TicketVariant {
+  id           String      @id @default(cuid())
+  ticketTypeId String
+  ticketType   TicketType  @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
+  kind         VariantKind
+  priceCents   Int
+  feeCents     Int
+  discountPct  Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now()) @updatedAt
+
+  inventory Int?
+  active    Boolean     @default(true)
+  OrderItem OrderItem[]
+
+  @@unique([ticketTypeId, kind])
+  @@index([ticketTypeId])
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userEmail       String
+  status          OrderStatus @default(CREATED)
+  stripeSessionId String?     @unique
+  totalCents      Int
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now()) @updatedAt
+
+  orderItems OrderItem[]
+  User       User[]
+
+  @@index([userEmail, createdAt])
+}
+
+model OrderItem {
+  id               String     @id @default(cuid())
+  orderId          String
+  order            Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  sector           String?
+  seat_type        String?
+  kind             String?
+  unit_price_cents Int?
+  fee_cents        Int?
+  ticketTypeId     String
+  ticketType       TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Restrict)
+
+  variantId String
+  variant   TicketVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+
+  quantity       Int
+  unitPriceCents Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+
+  @@unique([orderId, variantId])
+  @@index([orderId])
+  @@index([ticketTypeId])
+  @@index([variantId])
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  orders       Order[]
+  sessions     Session[]
+}
+
+model Session {
+  tokenHash String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+enum OrderStatus {
+  CREATED
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum VariantKind {
+  FULL
+  HALF
+  ELDERLY
+  PCD
+}
