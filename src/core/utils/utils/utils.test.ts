@@ -29,7 +29,7 @@ describe('lib/stripe', () => {
   });
 
   it('hasStripe=false e stripe=null quando sem chave', async () => {
-    const mod = await import('@/core/clients/stripe/stripe');
+    const mod = await import('../../clients/stripe');
     expect(mod.hasStripe()).toBe(false);
     expect(STRIPE_H.Ctor).not.toHaveBeenCalled();
     expect(mod.stripe).toBeNull();
@@ -37,7 +37,7 @@ describe('lib/stripe', () => {
 
   it('instancia Stripe com apiVersion quando existe chave', async () => {
     vi.stubEnv('STRIPE_SECRET_KEY', 'sk_test_123');
-    const mod = await import('@/core/clients/stripe/stripe');
+    const mod = await import('../../clients/stripe');
     expect(mod.hasStripe()).toBe(true);
     expect(STRIPE_H.Ctor).toHaveBeenCalledWith(
       'sk_test_123',

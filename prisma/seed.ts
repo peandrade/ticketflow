@@ -270,7 +270,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(12), 20, 30),
+        startsAt: at(daysFromNow(120), 20, 30),
         venueName: 'Arena BRB Mané Garrincha',
         venueCity: 'Brasília',
         venueState: 'DF',
@@ -283,7 +283,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(19), 21, 30),
+        startsAt: at(daysFromNow(190), 21, 30),
         venueName: 'Estádio Nilton Santos',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -304,7 +304,7 @@ const events: EventSeed[] = [
     heroPublicId: 'dua-lipa',
     performances: [
       {
-        startsAt: at(daysFromNow(7), 21, 0),
+        startsAt: at(daysFromNow(70), 21, 0),
         venueName: 'Arena BRB Mané Garrincha',
         venueCity: 'Brasília',
         venueState: 'DF',
@@ -317,7 +317,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(16), 20, 30),
+        startsAt: at(daysFromNow(160), 20, 30),
         venueName: 'Estádio Nilton Santos',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -330,7 +330,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(23), 21, 0),
+        startsAt: at(daysFromNow(230), 21, 0),
         venueName: 'Espaço Unimed',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -350,7 +350,7 @@ const events: EventSeed[] = [
     heroPublicId: 'post-malone',
     performances: [
       {
-        startsAt: at(daysFromNow(9), 21, 0),
+        startsAt: at(daysFromNow(90), 21, 0),
         venueName: 'Estádio Nilton Santos',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -363,7 +363,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(18), 20, 30),
+        startsAt: at(daysFromNow(180), 20, 30),
         venueName: 'Estádio Couto Pereira',
         venueCity: 'Curitiba',
         venueState: 'PR',
@@ -376,7 +376,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(26), 21, 30),
+        startsAt: at(daysFromNow(260), 21, 30),
         venueName: 'Arena BRB Mané Garrincha',
         venueCity: 'Brasília',
         venueState: 'DF',
@@ -397,7 +397,7 @@ const events: EventSeed[] = [
     heroPublicId: 'travis-scott',
     performances: [
       {
-        startsAt: at(daysFromNow(6), 20, 0),
+        startsAt: at(daysFromNow(60), 20, 0),
         venueName: 'Estádio Couto Pereira',
         venueCity: 'Curitiba',
         venueState: 'PR',
@@ -410,7 +410,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(15), 21, 30),
+        startsAt: at(daysFromNow(150), 21, 30),
         venueName: 'Arena Corinthians',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -423,7 +423,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(24), 21, 30),
+        startsAt: at(daysFromNow(240), 21, 30),
         venueName: 'Espaço Unimed',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -443,7 +443,7 @@ const events: EventSeed[] = [
     heroPublicId: 'matue',
     performances: [
       {
-        startsAt: at(daysFromNow(8), 20, 30),
+        startsAt: at(daysFromNow(80), 20, 30),
         venueName: 'Arena Corinthians',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -456,7 +456,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(17), 20, 0),
+        startsAt: at(daysFromNow(170), 20, 0),
         venueName: 'Estádio do Morumbis',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -469,7 +469,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(25), 21, 0),
+        startsAt: at(daysFromNow(250), 21, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -489,7 +489,7 @@ const events: EventSeed[] = [
     heroPublicId: 'kenny-g',
     performances: [
       {
-        startsAt: at(daysFromNow(10), 21, 0),
+        startsAt: at(daysFromNow(100), 21, 0),
         venueName: 'Espaço Unimed',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -501,7 +501,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(13), 21, 0),
+        startsAt: at(daysFromNow(130), 21, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -513,7 +513,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(20), 20, 0),
+        startsAt: at(daysFromNow(200), 20, 0),
         venueName: 'Auditório Araújo Vianna',
         venueCity: 'Porto Alegre',
         venueState: 'RS',
@@ -532,7 +532,7 @@ const events: EventSeed[] = [
     heroPublicId: 'benito-di-paula',
     performances: [
       {
-        startsAt: at(daysFromNow(11), 20, 30),
+        startsAt: at(daysFromNow(110), 20, 30),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -544,7 +544,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(19), 20, 0),
+        startsAt: at(daysFromNow(190), 20, 0),
         venueName: 'Espaço Unimed',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -556,7 +556,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(28), 20, 0),
+        startsAt: at(daysFromNow(280), 20, 0),
         venueName: 'Classic Hall',
         venueCity: 'Olinda Recife',
         venueState: 'PE',
@@ -575,7 +575,7 @@ const events: EventSeed[] = [
     heroPublicId: 'sergio-reis',
     performances: [
       {
-        startsAt: at(daysFromNow(14), 20, 0),
+        startsAt: at(daysFromNow(140), 20, 0),
         venueName: 'Vibra São Paulo',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -587,7 +587,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(22), 21, 0),
+        startsAt: at(daysFromNow(220), 21, 0),
         venueName: 'Classic Hall',
         venueCity: 'Olinda Recife',
         venueState: 'PE',
@@ -606,7 +606,7 @@ const events: EventSeed[] = [
     heroPublicId: 'kendrick-lamar',
     performances: [
       {
-        startsAt: at(daysFromNow(21), 21, 0),
+        startsAt: at(daysFromNow(210), 21, 0),
         venueName: 'Arena BRB Mané Garrincha',
         venueCity: 'Brasília',
         venueState: 'DF',
@@ -618,7 +618,7 @@ const events: EventSeed[] = [
         ],
       },
       {
-        startsAt: at(daysFromNow(29), 21, 30),
+        startsAt: at(daysFromNow(290), 21, 30),
         venueName: 'Estádio Couto Pereira',
         venueCity: 'Curitiba',
         venueState: 'PR',
@@ -638,7 +638,7 @@ const events: EventSeed[] = [
     heroPublicId: 'kacey-musgraves',
     performances: [
       {
-        startsAt: at(daysFromNow(14), 21, 0),
+        startsAt: at(daysFromNow(140), 21, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -658,7 +658,7 @@ const events: EventSeed[] = [
     heroPublicId: 'samba-90-graus',
     performances: [
       {
-        startsAt: at(daysFromNow(10), 20, 30),
+        startsAt: at(daysFromNow(100), 20, 30),
         venueName: 'Multiplan Hall São Caetano',
         venueCity: 'São Caetano do Sul',
         venueState: 'SP',
@@ -677,7 +677,7 @@ const events: EventSeed[] = [
     heroPublicId: 'alcione',
     performances: [
       {
-        startsAt: at(daysFromNow(18), 21, 0),
+        startsAt: at(daysFromNow(180), 21, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -696,7 +696,7 @@ const events: EventSeed[] = [
     heroPublicId: 'jeff-mills',
     performances: [
       {
-        startsAt: at(daysFromNow(22), 23, 0),
+        startsAt: at(daysFromNow(220), 23, 0),
         venueName: 'Multiplan Hall Ribeirão',
         venueCity: 'Ribeirão Preto',
         venueState: 'SP',
@@ -715,7 +715,7 @@ const events: EventSeed[] = [
     heroPublicId: 'titas-sao-caetano-do-sul',
     performances: [
       {
-        startsAt: at(daysFromNow(25), 21, 0),
+        startsAt: at(daysFromNow(250), 21, 0),
         venueName: 'Multiplan Hall São Caetano',
         venueCity: 'São Caetano do Sul',
         venueState: 'SP',
@@ -734,7 +734,7 @@ const events: EventSeed[] = [
     heroPublicId: 'the-sisters-of-mercy',
     performances: [
       {
-        startsAt: at(daysFromNow(30), 21, 0),
+        startsAt: at(daysFromNow(300), 21, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -746,8 +746,6 @@ const events: EventSeed[] = [
       },
     ],
   },
-
-  // EXPERIÊNCIAS — “Para toda a Família”
   {
     title: 'Sampa Sky',
     slug: 'sampasky',
@@ -755,7 +753,7 @@ const events: EventSeed[] = [
     heroPublicId: 'sampasky',
     performances: [
       {
-        startsAt: at(daysFromNow(7), 10, 0),
+        startsAt: at(daysFromNow(70), 10, 0),
         venueName: 'Sampa Sky',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -773,7 +771,7 @@ const events: EventSeed[] = [
     heroPublicId: 'julio-verne',
     performances: [
       {
-        startsAt: at(daysFromNow(11), 11, 0),
+        startsAt: at(daysFromNow(110), 11, 0),
         venueName: 'Júlio Verne Experience',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -791,7 +789,7 @@ const events: EventSeed[] = [
     heroPublicId: 'roda-rico',
     performances: [
       {
-        startsAt: at(daysFromNow(9), 15, 0),
+        startsAt: at(daysFromNow(90), 15, 0),
         venueName: 'Roda Rico',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -809,7 +807,7 @@ const events: EventSeed[] = [
     heroPublicId: 'sp-gastronomia-2025',
     performances: [
       {
-        startsAt: at(daysFromNow(20), 12, 0),
+        startsAt: at(daysFromNow(200), 12, 0),
         venueName: 'SP Gastronomia 2025',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -824,7 +822,7 @@ const events: EventSeed[] = [
     heroPublicId: 'zoo-sao-paulo',
     performances: [
       {
-        startsAt: at(daysFromNow(8), 9, 0),
+        startsAt: at(daysFromNow(80), 9, 0),
         venueName: 'Zoo de São Paulo',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -842,7 +840,7 @@ const events: EventSeed[] = [
     heroPublicId: 'napoleo-experience-sao-paulo',
     performances: [
       {
-        startsAt: at(daysFromNow(16), 14, 0),
+        startsAt: at(daysFromNow(160), 14, 0),
         venueName: 'Napoleo Experience São Paulo',
         venueCity: 'São Paulo',
         venueState: 'SP',
@@ -860,7 +858,7 @@ const events: EventSeed[] = [
     heroPublicId: 'teatro-magico-no-qualistage-rj',
     performances: [
       {
-        startsAt: at(daysFromNow(12), 20, 0),
+        startsAt: at(daysFromNow(120), 20, 0),
         venueName: 'Qualistage',
         venueCity: 'Rio de Janeiro',
         venueState: 'RJ',
@@ -878,7 +876,7 @@ const events: EventSeed[] = [
     heroPublicId: 'festival-ver-o-peso-da-cozinha-paraense',
     performances: [
       {
-        startsAt: at(daysFromNow(26), 12, 0),
+        startsAt: at(daysFromNow(260), 12, 0),
         venueName: 'Centro de Convenções Hangar',
         venueCity: 'Belém',
         venueState: 'PA',

@@ -17,8 +17,27 @@ export async function signUpAction(_: AuthState, formData: FormData): Promise<Au
 
   if (!name || !email || !password) return { error: 'Preencha todos os campos.', fields: { name, email } };
 
-  const user = await registerUser(name, email, password);
-  if (!user) return { error: 'Não foi possível criar sua conta.', fields: { name, email } };
+  try {
+    const user = await registerUser(name, email, password);
+    if (!user) {
+      return { error: 'Não foi possível criar sua conta.', fields: { name, email } };
+    }
+  } catch (err: unknown) {
+    const e = err as { code?: string; meta?: any; message?: string };
+
+    const isUniqueViolation = e?.code === 'P2002';
+    const target = (e as any)?.meta?.target;
+    const targetHasEmail =
+      (Array.isArray(target) && target.includes('email')) ||
+      (typeof target === 'string' && target.toLowerCase().includes('email'));
+
+    if (isUniqueViolation && targetHasEmail) {
+      return { error: 'E-mail já cadastrado.', fields: { name, email } };
+    }
+    
+    console.error('[signUpAction] erro ao registrar usuário', e?.code ?? e?.message ?? e);
+    return { error: 'Não foi possível criar sua conta.', fields: { name, email } };
+  }
 
   redirect(cb);
 }
