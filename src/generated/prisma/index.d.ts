@@ -3136,6 +3136,7 @@ export namespace Prisma {
     slug: string | null
     shortDescription: string | null
     heroPublicId: string | null
+    description: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3146,6 +3147,7 @@ export namespace Prisma {
     slug: string | null
     shortDescription: string | null
     heroPublicId: string | null
+    description: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3156,6 +3158,7 @@ export namespace Prisma {
     slug: number
     shortDescription: number
     heroPublicId: number
+    description: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3168,6 +3171,7 @@ export namespace Prisma {
     slug?: true
     shortDescription?: true
     heroPublicId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3178,6 +3182,7 @@ export namespace Prisma {
     slug?: true
     shortDescription?: true
     heroPublicId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3188,6 +3193,7 @@ export namespace Prisma {
     slug?: true
     shortDescription?: true
     heroPublicId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3271,6 +3277,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId: string | null
+    description: string | null
     createdAt: Date
     updatedAt: Date
     _count: EventCountAggregateOutputType | null
@@ -3298,6 +3305,7 @@ export namespace Prisma {
     slug?: boolean
     shortDescription?: boolean
     heroPublicId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     performances?: boolean | Event$performancesArgs<ExtArgs>
@@ -3310,6 +3318,7 @@ export namespace Prisma {
     slug?: boolean
     shortDescription?: boolean
     heroPublicId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["event"]>
@@ -3320,6 +3329,7 @@ export namespace Prisma {
     slug?: boolean
     shortDescription?: boolean
     heroPublicId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["event"]>
@@ -3330,11 +3340,12 @@ export namespace Prisma {
     slug?: boolean
     shortDescription?: boolean
     heroPublicId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "shortDescription" | "heroPublicId" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "shortDescription" | "heroPublicId" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     performances?: boolean | Event$performancesArgs<ExtArgs>
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
@@ -3353,6 +3364,7 @@ export namespace Prisma {
       slug: string
       shortDescription: string
       heroPublicId: string | null
+      description: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["event"]>
@@ -3784,6 +3796,7 @@ export namespace Prisma {
     readonly slug: FieldRef<"Event", 'String'>
     readonly shortDescription: FieldRef<"Event", 'String'>
     readonly heroPublicId: FieldRef<"Event", 'String'>
+    readonly description: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
   }
@@ -13393,6 +13406,7 @@ export namespace Prisma {
     slug: 'slug',
     shortDescription: 'shortDescription',
     heroPublicId: 'heroPublicId',
+    description: 'description',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -13721,6 +13735,7 @@ export namespace Prisma {
     slug?: StringFilter<"Event"> | string
     shortDescription?: StringFilter<"Event"> | string
     heroPublicId?: StringNullableFilter<"Event"> | string | null
+    description?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     performances?: PerformanceListRelationFilter
@@ -13732,6 +13747,7 @@ export namespace Prisma {
     slug?: SortOrder
     shortDescription?: SortOrder
     heroPublicId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     performances?: PerformanceOrderByRelationAggregateInput
@@ -13746,6 +13762,7 @@ export namespace Prisma {
     title?: StringFilter<"Event"> | string
     shortDescription?: StringFilter<"Event"> | string
     heroPublicId?: StringNullableFilter<"Event"> | string | null
+    description?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
     performances?: PerformanceListRelationFilter
@@ -13757,6 +13774,7 @@ export namespace Prisma {
     slug?: SortOrder
     shortDescription?: SortOrder
     heroPublicId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: EventCountOrderByAggregateInput
@@ -13773,6 +13791,7 @@ export namespace Prisma {
     slug?: StringWithAggregatesFilter<"Event"> | string
     shortDescription?: StringWithAggregatesFilter<"Event"> | string
     heroPublicId?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Event"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
   }
@@ -14451,6 +14470,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId?: string | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     performances?: PerformanceCreateNestedManyWithoutEventInput
@@ -14462,6 +14482,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId?: string | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     performances?: PerformanceUncheckedCreateNestedManyWithoutEventInput
@@ -14473,6 +14494,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     performances?: PerformanceUpdateManyWithoutEventNestedInput
@@ -14484,6 +14506,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     performances?: PerformanceUncheckedUpdateManyWithoutEventNestedInput
@@ -14495,6 +14518,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId?: string | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14505,6 +14529,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14515,6 +14540,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15312,6 +15338,7 @@ export namespace Prisma {
     slug?: SortOrder
     shortDescription?: SortOrder
     heroPublicId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15322,6 +15349,7 @@ export namespace Prisma {
     slug?: SortOrder
     shortDescription?: SortOrder
     heroPublicId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15332,6 +15360,7 @@ export namespace Prisma {
     slug?: SortOrder
     shortDescription?: SortOrder
     heroPublicId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16810,6 +16839,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId?: string | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16820,6 +16850,7 @@ export namespace Prisma {
     slug: string
     shortDescription: string
     heroPublicId?: string | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16911,6 +16942,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16921,6 +16953,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     shortDescription?: StringFieldUpdateOperationsInput | string
     heroPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -34,6 +34,7 @@ export async function getEventBySlug(slug: string): Promise<EventDetail | null> 
       id: true,
       title: true,
       shortDescription: true,
+      description: true,
       heroPublicId: true,
       performances: {
         orderBy: { startsAt: "asc" },

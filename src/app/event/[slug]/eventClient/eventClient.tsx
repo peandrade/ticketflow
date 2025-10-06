@@ -11,6 +11,7 @@ import type { EventDetail, PerformanceOption } from '@/types/event';
 type Props = {
   title: string;
   eventSlug: string;
+  description: string;
   options: PerformanceOption[];
   performancesFull: EventDetail['performances'];
   policy: Parameters<typeof SalesPolicy>[0]['policy'];
@@ -19,6 +20,7 @@ type Props = {
 export default function EventClient({
   title,
   options,
+  description,
   eventSlug,
   performancesFull,
   policy,
@@ -50,6 +52,22 @@ export default function EventClient({
         value={selectedId ?? ''}
         onChange={setSelectedId}
       />
+
+      <section
+        role="region"
+        aria-labelledby="event-about-heading"
+        className="prose prose-neutral dark:prose-invert mt-6 max-w-none p-4 md:p-6"
+      >
+        <h2 id="event-about-heading" className="text-xl font-semibold">
+          Sobre o evento
+        </h2>
+
+        {description ? (
+          <p>{description}</p>
+        ) : (
+          <p className="text-muted-foreground">Descrição em breve.</p>
+        )}
+      </section>
 
       {selectedOption && selectedFull && (
         <>

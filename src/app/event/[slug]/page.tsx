@@ -53,6 +53,7 @@ export default async function EventPage({ params }: PageProps) {
       <EventClient
         eventSlug={slug}
         title={data.title}
+        description={data.description}
         options={options}
         performancesFull={data.performances}
         policy={policy}

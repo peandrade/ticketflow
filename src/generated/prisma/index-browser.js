@@ -139,6 +139,7 @@ exports.Prisma.EventScalarFieldEnum = {
   slug: 'slug',
   shortDescription: 'shortDescription',
   heroPublicId: 'heroPublicId',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
