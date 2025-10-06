@@ -763,7 +763,7 @@
       ],
     },
     {
-      title: 'Sampa Sky',
+      title: 'Sampa Sky 360º Graus',
       slug: 'sampasky',
       shortDescription: 'Mirante com chão de vidro no centro de SP.',
       description: 'Mirante com piso de vidro e vista 360º do Centro Histórico de São Paulo. As sessões são cronometradas para garantir a experiência nas sacadas de vidro, com orientação de segurança e serviço de fotos. Ideal para registros inesquecíveis e para quem quer ver a cidade de um novo ângulo.',
@@ -782,7 +782,7 @@
       ],
     },
     {
-      title: 'Júlio Verne',
+      title: 'Júlio Verne Experiencia Imperdivel',
       slug: 'julio-verne',
       shortDescription: 'Exposição imersiva inspirada em Júlio Verne.',
       description: 'Exposição imersiva inspirada nas obras de Júlio Verne, com projeções 360º, salas temáticas e trilha original. O visitante atravessa ambientes que remetem a “Viagem ao Centro da Terra” e “Vinte Mil Léguas Submarinas”, unindo literatura, ciência e fantasia para todas as idades.',
@@ -801,7 +801,7 @@
       ],
     },
     {
-      title: 'Roda Rico',
+      title: 'Roda Rico em São Paulo',
       slug: 'roda-rico',
       shortDescription: 'A maior roda-gigante da América Latina.',
       description: 'Roda-gigante com gôndolas climatizadas e vista panorâmica do Parque Cândido Portinari e do skyline paulistano. Opções de gôndola compartilhada ou exclusiva, perfeita para comemorações e fotos. Experiência segura, confortável e instagramável.',
@@ -836,7 +836,7 @@
       ],
     },
     {
-      title: 'Zoo São Paulo',
+      title: 'Zoo São Paulo Parque Ecologico',
       slug: 'zoo-sao-paulo',
       shortDescription: 'Visita ao Zoológico de São Paulo.',
       description: 'Ingresso datado para explorar um dos maiores zoológicos do país. Trilhas sinalizadas, áreas temáticas e programas de conservação apresentam biodiversidade e educação ambiental. Uma atividade completa para famílias e amantes da natureza.',
