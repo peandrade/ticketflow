@@ -33,7 +33,7 @@ export type EventDetail = {
   id: string
   title: string
   shortDescription: string
-  description: string,
+  description: string | null,
   heroPublicId: string | null
   performances: Array<{
     id: string;
